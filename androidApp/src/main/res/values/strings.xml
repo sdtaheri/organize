@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">Organize</string>
+  <string name="reminders">Reminders</string>
+  <string name="info_button_content_descr">Info Button</string>
+  <string name="about_device">About Device</string>
+  <string name="back_button_content_desc">Back Button</string>
+</resources>
