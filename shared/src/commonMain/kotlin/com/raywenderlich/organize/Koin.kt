@@ -16,16 +16,17 @@ private val coreModule = module {
   single { DatabaseHelper(get()) }
 }
 
-private val viewModelsModule = module {
-  factory { AboutViewModel(get(), get()) }
-  factory { RemindersViewModel(get()) }
-}
-
 private val repositoriesModule = module {
   factory { RemindersRepository(get()) }
 }
 
-fun initKoin(appModule: Module): KoinApplication = startKoin {
+fun initKoin(
+  appModule: Module = module { },
+  viewModelsModule: Module = module {
+    factory { AboutViewModel(get(), get()) }
+    factory { RemindersViewModel(get()) }
+  }
+): KoinApplication = startKoin {
   modules(
     coreModule,
     repositoriesModule,

@@ -1,40 +1,31 @@
-package com.raywenderlich.organize.android.ui.about
+package ui.about
 
-import android.text.format.DateUtils
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.organize.android.R
 import com.raywenderlich.organize.presentation.AboutViewModel
-import com.raywenderlich.organize.android.helpers.getViewModel
+import koin
 
 @Composable
 fun AboutView(
-  viewModel: AboutViewModel = getViewModel(),
+  viewModel: AboutViewModel = koin.get(),
   onUpButtonClick: () -> Unit
 ) {
   Column {
     Toolbar(onUpButtonClick = onUpButtonClick)
     ContentView(
       items = viewModel.items,
-      footer = "This page was first opened ${
-        DateUtils.getRelativeTimeSpanString(
-          viewModel.firstOpen * 1000
-        ).toString()
-      }",
+      footer = "This page was first opened ${viewModel.firstOpen * 1000}",
     )
   }
 }
@@ -44,12 +35,12 @@ private fun Toolbar(
   onUpButtonClick: () -> Unit,
 ) {
   TopAppBar(
-    title = { Text(text = stringResource(R.string.about_device)) },
+    title = { Text(text = "About Device") },
     navigationIcon = {
       IconButton(onClick = onUpButtonClick) {
         Icon(
           imageVector = Icons.Default.ArrowBack,
-          contentDescription = stringResource(R.string.back_button_content_desc),
+          contentDescription = "Up Button",
         )
       }
     }
@@ -84,21 +75,27 @@ private fun RowView(
   subtitle: String,
 ) {
   Column(modifier = Modifier.fillMaxWidth()) {
-    Column(Modifier.padding(8.dp)) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier.padding(8.dp)
+    ) {
       Text(
         text = title,
-        style = MaterialTheme.typography.caption.copy(color = Color.Gray),
+        style = MaterialTheme.typography.caption,
+        color = Color.Gray,
+        modifier = Modifier.weight(1f)
       )
       Text(
         text = subtitle,
         style = MaterialTheme.typography.body1,
+        modifier = Modifier.padding(8.dp)
       )
     }
     Divider()
   }
 }
 
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 private fun RowViewPreview() {
   LazyColumn {

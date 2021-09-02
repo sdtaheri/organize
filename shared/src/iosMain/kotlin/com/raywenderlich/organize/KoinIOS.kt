@@ -21,7 +21,7 @@ actual val platformModule: Module = module {
 fun initKoinIOS(
   userDefaults: NSUserDefaults,
 ): KoinApplication = initKoin(
-  module {
+  appModule = module {
     single<Settings> {
       AppleSettings(userDefaults)
     }

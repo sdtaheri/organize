@@ -7,11 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.raywenderlich.organize.android.ui.about.AboutView
 import com.raywenderlich.organize.android.ui.reminders.RemindersView
-
-sealed class Screen(val route: String) {
-  object Reminders : Screen("reminders")
-  object AboutDevice : Screen("about-device")
-}
+import com.raywenderlich.organize.presentation.Screen
 
 @Composable
 fun AppNavHost(
@@ -24,11 +20,13 @@ fun AppNavHost(
     modifier = modifier,
   ) {
     composable(Screen.Reminders.route) {
-      RemindersView(navController = navController)
+      RemindersView(
+        onAboutIconClick = { navController.navigate(Screen.AboutDevice.route) }
+      )
     }
 
     composable(Screen.AboutDevice.route) {
-      AboutView() {
+      AboutView {
         navController.popBackStack()
       }
     }

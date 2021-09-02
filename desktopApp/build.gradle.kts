@@ -20,8 +20,9 @@ kotlin {
       resources.srcDirs("src/jvmMain/resources")
 
       dependencies {
-        implementation(compose.desktop.currentOs)
         implementation(project(":shared"))
+        implementation(compose.desktop.currentOs)
+        implementation("io.insert-koin:koin-core:${rootProject.ext["koin_version"]}")
       }
     }
   }

@@ -1,5 +1,3 @@
-import org.jetbrains.compose.compose
-
 plugins {
   kotlin("multiplatform")
   id("com.android.library")
@@ -71,7 +69,6 @@ kotlin {
     val desktopMain by getting {
       dependsOn(commonMain)
       dependencies {
-        implementation(compose.desktop.common)
         implementation("com.squareup.sqldelight:sqlite-driver:1.5.0")
       }
     }

@@ -1,5 +1,5 @@
 buildscript {
-    val compose_version by extra("1.0.1")
+    val compose_version by extra("1.0.2")
     val settings_version by extra("0.8")
     val koin_version by extra("3.1.2")
 
@@ -11,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
-        classpath("com.android.tools.build:gradle:7.0.1")
+        classpath("com.android.tools.build:gradle:7.0.2")
         classpath("org.jetbrains.compose:compose-gradle-plugin:1.0.0-alpha3")
         classpath("com.squareup.sqldelight:gradle-plugin:1.5.0")
     }

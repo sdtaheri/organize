@@ -1,5 +1,6 @@
-package com.raywenderlich.organize.android.ui.reminders
+package ui.reminders
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,9 +13,6 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import com.raywenderlich.organize.android.R
 
 @Composable
 fun RemindersView(
@@ -31,12 +29,12 @@ private fun Toolbar(
   onAboutIconClick: () -> Unit,
 ) {
   TopAppBar(
-    title = { Text(text = stringResource(R.string.reminders)) },
+    title = { Text(text = "Reminders") },
     actions = {
       IconButton(onClick = onAboutIconClick) {
         Icon(
           imageVector = Icons.Outlined.Info,
-          contentDescription = stringResource(R.string.info_button_content_descr),
+          contentDescription = "About Device Button",
         )
       }
     }
@@ -53,7 +51,7 @@ private fun ContentView() {
   }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun RemindersViewPreview() {
   RemindersView {

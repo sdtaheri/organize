@@ -3,7 +3,6 @@ package com.raywenderlich.organize.android
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.raywenderlich.organize.Platform
 import com.raywenderlich.organize.initKoin
 import com.raywenderlich.organize.presentation.AboutViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -14,14 +13,13 @@ class OrganizeApp : Application() {
     super.onCreate()
 
     initKoin(
-      module {
+      appModule = module {
         single<Context> { this@OrganizeApp }
         single<SharedPreferences> {
           get<Context>().getSharedPreferences("OrganizeApp", Context.MODE_PRIVATE)
         }
-        single {
-          Platform()
-        }
+      },
+      viewModelsModule = module {
         viewModel {
           AboutViewModel(get(), get())
         }
