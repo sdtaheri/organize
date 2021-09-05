@@ -4,9 +4,9 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,31 +19,10 @@ import koin
 @Composable
 fun AboutView(
   viewModel: AboutViewModel = koin.get(),
-  onUpButtonClick: () -> Unit
 ) {
-  Column {
-    Toolbar(onUpButtonClick = onUpButtonClick)
-    ContentView(
-      items = viewModel.items,
-      footer = "This page was first opened ${viewModel.firstOpen * 1000}",
-    )
-  }
-}
-
-@Composable
-private fun Toolbar(
-  onUpButtonClick: () -> Unit,
-) {
-  TopAppBar(
-    title = { Text(text = "About Device") },
-    navigationIcon = {
-      IconButton(onClick = onUpButtonClick) {
-        Icon(
-          imageVector = Icons.Default.ArrowBack,
-          contentDescription = "Up Button",
-        )
-      }
-    }
+  ContentView(
+    items = viewModel.items,
+    footer = "This page was first opened ${viewModel.firstOpen * 1000}",
   )
 }
 
