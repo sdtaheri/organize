@@ -7,11 +7,15 @@ actual class Platform actual constructor() {
   actual val deviceModel = "Desktop"
   actual val cpuType = System.getProperty("os.arch") ?: "---"
 
-  actual val screenWidth = 0
-  actual val screenHeight = 0
-  actual val screenDensity = 0
+  actual val screen: Screen? = null
 
   actual fun logSystemInfo() {
-    print(userAgent)
+    print(deviceInfo)
   }
+}
+
+actual class Screen actual constructor() {
+  actual val width = 0
+  actual val height = 0
+  actual val density = 0
 }

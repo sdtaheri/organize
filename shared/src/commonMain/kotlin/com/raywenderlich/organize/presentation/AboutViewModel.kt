@@ -11,22 +11,28 @@ class AboutViewModel(
   settings: Settings,
 ) : BaseViewModel() {
 
-  val items = listOf<RowItem>(
-    RowItem("Operating System", "${platform.osName} ${platform.osVersion}"),
-    RowItem("Device", platform.deviceModel),
-    RowItem("CPU", platform.cpuType),
-    RowItem(
-      "Display",
-      "${
-        max(platform.screenWidth, platform.screenHeight)
-      }×${
-        min(
-          platform.screenWidth,
-          platform.screenHeight
-        )
-      } @${platform.screenDensity}x"
-    ),
-  )
+  val items: List<RowItem> = makeRowItems(platform)
+
+  private fun makeRowItems(platform: Platform): List<RowItem> {
+    val rowItems = mutableListOf(
+      RowItem("Operating System", "${platform.osName} ${platform.osVersion}"),
+      RowItem("Device", platform.deviceModel),
+      RowItem("CPU", platform.cpuType),
+    )
+    platform.screen?.let {
+      rowItems.add(
+        RowItem(
+          "Display",
+          "${
+            max(it.width, it.height)
+          }×${
+            min(it.width, it.height)
+          } @${it.density}x"
+        ),
+      )
+    }
+    return rowItems
+  }
 
   // Epoch Seconds
   val firstOpen: Long

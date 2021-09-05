@@ -7,12 +7,23 @@ expect class Platform() {
   val deviceModel: String
   val cpuType: String
 
-  val screenWidth: Int
-  val screenHeight: Int
-  val screenDensity: Int
+  val screen: Screen?
 
   fun logSystemInfo()
 }
 
-val Platform.userAgent: String
-  get() = "($osName; $osVersion; $deviceModel; ${screenWidth}x$screenHeight@${screenDensity}x; $cpuType)"
+expect class Screen() {
+  val width: Int
+  val height: Int
+  val density: Int
+}
+
+val Platform.deviceInfo: String
+  get() {
+    var result = "($osName; $osVersion; $deviceModel; "
+    screen?.let {
+      result += "${it.width}x${it.height}@${it.density}x; "
+    }
+    result += "$cpuType)"
+    return result
+  }

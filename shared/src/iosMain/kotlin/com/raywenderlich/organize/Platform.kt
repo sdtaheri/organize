@@ -36,11 +36,15 @@ actual class Platform actual constructor() {
 
   actual val cpuType = kotlin.native.Platform.cpuArchitecture.name
 
-  actual val screenWidth = CGRectGetWidth(UIScreen.mainScreen.nativeBounds).toInt()
-  actual val screenHeight = CGRectGetHeight(UIScreen.mainScreen.nativeBounds).toInt()
-  actual val screenDensity = UIScreen.mainScreen.scale.toInt()
+  actual val screen = Screen()
 
   actual fun logSystemInfo() {
-    NSLog("$userAgent")
+    NSLog("$deviceInfo")
   }
+}
+
+actual class Screen actual constructor() {
+  actual val width = CGRectGetWidth(UIScreen.mainScreen.nativeBounds).toInt()
+  actual val height = CGRectGetHeight(UIScreen.mainScreen.nativeBounds).toInt()
+  actual val density = UIScreen.mainScreen.scale.toInt()
 }
