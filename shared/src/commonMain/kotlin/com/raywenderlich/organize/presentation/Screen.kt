@@ -1,6 +1,6 @@
 package com.raywenderlich.organize.presentation
 
-sealed class Screen(val route: String) {
-  object Reminders : Screen("reminders")
-  object AboutDevice : Screen("about-device")
+enum class Screen(val route: String) {
+  Reminders("reminders"),
+  AboutDevice("about-device")
 }
