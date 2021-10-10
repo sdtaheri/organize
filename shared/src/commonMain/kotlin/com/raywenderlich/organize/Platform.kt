@@ -7,12 +7,12 @@ expect class Platform() {
   val deviceModel: String
   val cpuType: String
 
-  val screen: Screen?
+  val screen: ScreenInfo?
 
   fun logSystemInfo()
 }
 
-expect class Screen() {
+expect class ScreenInfo() {
   val width: Int
   val height: Int
   val density: Int

@@ -12,14 +12,14 @@ actual class Platform actual constructor() {
   actual val deviceModel = "${Build.MANUFACTURER} ${Build.MODEL}"
   actual val cpuType = Build.SUPPORTED_ABIS.firstOrNull() ?: "---"
 
-  actual val screen = Screen()
+  actual val screen: ScreenInfo? = ScreenInfo()
 
   actual fun logSystemInfo() {
     Log.d("Platform", deviceInfo)
   }
 }
 
-actual class Screen actual constructor() {
+actual class ScreenInfo actual constructor() {
   private val metrics = Resources.getSystem().displayMetrics
 
   actual val width = metrics.widthPixels
