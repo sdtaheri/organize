@@ -18,22 +18,22 @@ import com.raywenderlich.organize.android.R
 
 @Composable
 fun RemindersView(
-  onAboutIconClick: () -> Unit,
+  onAboutButtonClick: () -> Unit,
 ) {
   Column {
-    Toolbar(onAboutIconClick = onAboutIconClick)
+    Toolbar(onAboutButtonClick = onAboutButtonClick)
     ContentView()
   }
 }
 
 @Composable
 private fun Toolbar(
-  onAboutIconClick: () -> Unit,
+  onAboutButtonClick: () -> Unit,
 ) {
   TopAppBar(
     title = { Text(text = stringResource(R.string.reminders)) },
     actions = {
-      IconButton(onClick = onAboutIconClick) {
+      IconButton(onClick = onAboutButtonClick) {
         Icon(
           imageVector = Icons.Outlined.Info,
           contentDescription = stringResource(R.string.info_button_content_descr),

@@ -21,14 +21,14 @@ fun AppNavHost(
   ) {
     composable(Screen.Reminders.route) {
       RemindersView(
-        onAboutIconClick = { navController.navigate(Screen.AboutDevice.route) }
+        onAboutButtonClick = { navController.navigate(Screen.AboutDevice.route) }
       )
     }
 
     composable(Screen.AboutDevice.route) {
-      AboutView {
-        navController.popBackStack()
-      }
+      AboutView(
+        onUpButtonClick = { navController.popBackStack() }
+      )
     }
   }
 }

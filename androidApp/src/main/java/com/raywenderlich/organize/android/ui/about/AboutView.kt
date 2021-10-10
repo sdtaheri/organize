@@ -18,8 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.organize.android.R
-import com.raywenderlich.organize.presentation.AboutViewModel
 import com.raywenderlich.organize.android.helpers.getViewModel
+import com.raywenderlich.organize.presentation.AboutViewModel
 
 @Composable
 fun AboutView(
@@ -72,7 +72,9 @@ private fun ContentView(
         text = footer,
         style = MaterialTheme.typography.caption,
         textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(8.dp),
       )
     }
   }
@@ -87,7 +89,8 @@ private fun RowView(
     Column(Modifier.padding(8.dp)) {
       Text(
         text = title,
-        style = MaterialTheme.typography.caption.copy(color = Color.Gray),
+        style = MaterialTheme.typography.caption,
+        color = Color.Gray,
       )
       Text(
         text = subtitle,

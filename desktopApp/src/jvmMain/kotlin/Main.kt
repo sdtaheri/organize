@@ -20,7 +20,7 @@ fun main() {
   koin = initKoin().koin
 
   return application {
-    var screenState by remember { mutableStateOf<Screen>(Screen.Reminders) }
+    var screenState by remember { mutableStateOf(Screen.Reminders) }
 
     Window(
       title = "Organize",
@@ -38,7 +38,6 @@ fun main() {
         title = "About Device",
         state = WindowState(width = 300.dp, height = 450.dp),
         resizable = true,
-        alwaysOnTop = true,
         onCloseRequest = {
           screenState = Screen.Reminders
         },
